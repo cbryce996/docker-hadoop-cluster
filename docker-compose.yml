@@ -1,0 +1,57 @@
+version: '3'
+
+networks:
+  hadoop-net:
+
+services:
+  namenode:
+    build:
+      context: .
+      args:
+        - NODE_TYPE=name_node
+    entrypoint:
+      - /opt/hadoop-3.3.1/scripts/name_node.sh
+    ports:
+      - "50070:50070"
+    expose:
+      - "8020"
+    networks:
+      - hadoop-net
+
+  datanode:
+    build:
+      context: .
+      args:
+        - NODE_TYPE=data_node
+    entrypoint: 
+      - /opt/hadoop-3.3.1/scripts/data_node.sh
+    ports:
+      - "9864:9864"
+    networks:
+      - hadoop-net
+
+  resourcemanager:
+    build:
+      context: .
+      args:
+        - NODE_TYPE=resource_manager
+    entrypoint: 
+      - /opt/hadoop-3.3.1/scripts/resource_manager.sh
+    ports:
+      - "8088:8088"
+    expose:
+      - "8082"
+    networks:
+      - hadoop-net
+
+  nodemanager:
+    build:
+      context: .
+      args:
+        - NODE_TYPE=node_manager
+    entrypoint:
+      - /opt/hadoop-3.3.1/scripts/node_manager.sh
+    ports:
+      - "8042:8042"
+    networks:
+      - hadoop-net
