@@ -4,54 +4,64 @@ networks:
   hadoop-net:
 
 services:
+  kerberos:
+    build:
+      context: ./kerberos
+    networks:
+      - hadoop-net
+
   namenode:
     build:
-      context: .
-      args:
-        - NODE_TYPE=name_node
-    entrypoint:
-      - /opt/hadoop-3.3.1/scripts/name_node.sh
+      context: ./hadoop
+    environment:
+      - NODE_TYPE=name_node
+    volumes:
+      - ./data/namenode:/data/namenode
     ports:
       - "50070:50070"
     expose:
       - "8020"
     networks:
       - hadoop-net
+    depends_on:
+      - kerberos
 
   datanode:
     build:
-      context: .
-      args:
-        - NODE_TYPE=data_node
-    entrypoint: 
-      - /opt/hadoop-3.3.1/scripts/data_node.sh
+      context: ./hadoop
+    environment:
+      - NODE_TYPE=data_node
+    volumes:
+      - ./data/datanode:/data/datanode
     ports:
       - "9864:9864"
     networks:
       - hadoop-net
+    depends_on:
+      - namenode
 
   resourcemanager:
     build:
-      context: .
-      args:
-        - NODE_TYPE=resource_manager
-    entrypoint: 
-      - /opt/hadoop-3.3.1/scripts/resource_manager.sh
+      context: ./hadoop
+    environment:
+      - NODE_TYPE=resource_manager
     ports:
       - "8088:8088"
     expose:
       - "8082"
     networks:
       - hadoop-net
+    depends_on:
+      - namenode
 
   nodemanager:
     build:
-      context: .
-      args:
-        - NODE_TYPE=node_manager
-    entrypoint:
-      - /opt/hadoop-3.3.1/scripts/node_manager.sh
+      context: ./hadoop
+    environment:
+      - NODE_TYPE=node_manager
     ports:
       - "8042:8042"
     networks:
       - hadoop-net
+    depends_on:
+      - resourcemanager

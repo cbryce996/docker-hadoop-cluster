@@ -1,12 +1,11 @@
 <configuration>
     <property>
         <name>dfs.namenode.name.dir</name>
-        <value>/home/hadoop/data/nameNode</value>
+        <value>/data/namenode</value>
     </property>
-
     <property>
         <name>dfs.datanode.data.dir</name>
-        <value>/home/hadoop/data/dataNode</value>
+        <value>/data/datanode</value>
     </property>
     <property>
         <name>dfs.replication</name>
@@ -15,5 +14,9 @@
     <property>
         <name>dfs.namenode.http-address</name>
         <value>namenode:50070</value>
+    </property>
+    <property>
+        <name>dfs.clusterID</name>
+        <value>cluster_1</value>
     </property>
 </configuration>
