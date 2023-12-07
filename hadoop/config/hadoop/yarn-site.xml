@@ -23,4 +23,24 @@
         <name>yarn.nodemanager.aux-services</name>
         <value>mapreduce_shuffle</value>
     </property>
+    <property>
+        <name>yarn.nodemanager.keytab</name>
+        <value>/keys/yarn-nodemanager.keytab</value>
+    </property>
+
+    <property>
+        <name>yarn.nodemanager.kerberos.principal</name>
+        <value>yarn/nodemanager@CLUSTER</value>
+    </property>
+
+    <property>
+        <name>yarn.resourcemanager.keytab</name>
+        <value>/keys/yarn-resourcemanager.keytab</value>
+    </property>
+
+    <property>
+        <name>yarn.resourcemanager.kerberos.principal</name>
+        <value>yarn/resourcemanager@CLUSTER</value>
+    </property>
+
 </configuration>

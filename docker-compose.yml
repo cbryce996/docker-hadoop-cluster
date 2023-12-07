@@ -6,17 +6,25 @@ networks:
 services:
   kerberos:
     build:
-      context: ./kerberos
+      context: .
+      dockerfile: Dockerfile-kerberos
+    volumes:
+      - ./data/kerberos/keys:/data/keys
+      - ./data/kerberos/db:/kdc/db
+    expose:
+      - "88"
+      - "749"
     networks:
       - hadoop-net
 
   namenode:
     build:
-      context: ./hadoop
+      context: .
+      dockerfile: Dockerfile-hadoop
     environment:
       - NODE_TYPE=name_node
     volumes:
-      - ./data/namenode:/data/namenode
+      - ./data/hadoop/namenode:/data/namenode
     ports:
       - "50070:50070"
     expose:
@@ -28,11 +36,12 @@ services:
 
   datanode:
     build:
-      context: ./hadoop
+      context: .
+      dockerfile: Dockerfile-hadoop
     environment:
       - NODE_TYPE=data_node
     volumes:
-      - ./data/datanode:/data/datanode
+      - ./data/hadoop/datanode:/data/datanode
     ports:
       - "9864:9864"
     networks:
@@ -42,7 +51,8 @@ services:
 
   resourcemanager:
     build:
-      context: ./hadoop
+      context: .
+      dockerfile: Dockerfile-hadoop
     environment:
       - NODE_TYPE=resource_manager
     ports:
@@ -56,7 +66,8 @@ services:
 
   nodemanager:
     build:
-      context: ./hadoop
+      context: .
+      dockerfile: Dockerfile-hadoop
     environment:
       - NODE_TYPE=node_manager
     ports:

@@ -1,0 +1,27 @@
+FROM ubuntu:latest
+
+ENV HADOOP_VERSION 3.3.1
+ENV KERBEROS_VERSION 1.18.3
+
+RUN apt-get update && \
+    apt-get install -y telnet iputils-ping
+
+RUN apt-get update && \
+    apt-get install -y openjdk-8-jdk wget krb5-user && \
+    wget https://archive.apache.org/dist/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz && \
+    tar -xzvf hadoop-${HADOOP_VERSION}.tar.gz -C /opt/ && \
+    rm hadoop-${HADOOP_VERSION}.tar.gz
+
+COPY ./hadoop/config/kerberos/krb5.conf /etc/krb5.conf
+COPY ./hadoop/config/hadoop/* /config/hadoop/
+COPY ./hadoop/scripts/* /scripts/
+COPY ./data/kerberos/keys/* /keys/
+
+RUN chmod +x /scripts/*
+
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+ENV HADOOP_CONF_DIR /config/hadoop
+ENV HADOOP_HOME /opt/hadoop-${HADOOP_VERSION}
+ENV PATH $PATH:$HADOOP_HOME/bin
+
+ENTRYPOINT ["/scripts/start_hadoop.sh"]^]

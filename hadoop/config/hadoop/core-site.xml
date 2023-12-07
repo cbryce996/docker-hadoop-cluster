@@ -1,23 +1,28 @@
 <configuration>
 
-    <!-- Default file system URI -->
     <property>
         <name>fs.defaultFS</name>
         <value>hdfs://namenode:8020</value>
     </property>
 
-    <!-- Kerberos principal for Hadoop
     <property>
         <name>hadoop.security.authentication</name>
         <value>kerberos</value>
     </property>
-    -->
 
-    <!-- Kerberos keytab for Hadoop
     <property>
-        <name>hadoop.security.auth_to_local</name>
-        <value>DEFAULT</value>
+        <name>hadoop.security.authorization</name>
+        <value>true</value>
     </property>
-    -->
+
+    <property>
+        <name>hadoop.security.kerberos.kdc</name>
+        <value>kerberos:88</value>
+    </property>
+
+    <property>
+        <name>dfs.block.access.token.enable</name>
+        <value>true</value>
+    </property>
 
 </configuration>

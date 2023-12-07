@@ -1,4 +1,9 @@
 #!/bin/bash
 
-# Start Namenode
-/opt/hadoop-3.3.1/bin/hdfs namenode
+until kinit -V -kt /keys/hdfs-namenode.keytab hdfs/namenode; do sleep 2; done
+
+echo "KDC is up and ready to go... starting up"
+
+kdestroy
+
+hdfs namenode
