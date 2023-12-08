@@ -23,5 +23,6 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV HADOOP_CONF_DIR /config/hadoop
 ENV HADOOP_HOME /opt/hadoop-${HADOOP_VERSION}
 ENV PATH $PATH:$HADOOP_HOME/bin
+ENV HADOOP_ROOT_LOGGER=DEBUG,console
 
 ENTRYPOINT ["/scripts/start_hadoop.sh"]^]

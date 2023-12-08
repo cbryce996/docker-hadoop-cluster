@@ -44,6 +44,8 @@ services:
       - ./data/hadoop/datanode:/data/datanode
     ports:
       - "9864:9864"
+    expose:
+      - "10024"
     networks:
       - hadoop-net
     depends_on:

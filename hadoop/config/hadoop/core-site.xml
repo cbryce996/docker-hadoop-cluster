@@ -11,6 +11,11 @@
     </property>
 
     <property>
+        <name>hadoop.rpc.protection</name>
+        <value>privacy</value>
+    </property>
+
+    <property>
         <name>hadoop.security.authorization</name>
         <value>true</value>
     </property>
@@ -21,8 +26,13 @@
     </property>
 
     <property>
-        <name>dfs.block.access.token.enable</name>
-        <value>true</value>
+        <name>hadoop.ssl.server.conf</name>
+        <value>ssl-server.xml</value>
+    </property>
+
+    <property>
+        <name>hadoop.ssl.client.conf</name>
+        <value>ssl-client.xml</value>
     </property>
 
 </configuration>

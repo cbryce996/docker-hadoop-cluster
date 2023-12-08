@@ -6,4 +6,6 @@ echo "KDC is up and ready to go... starting up"
 
 kdestroy
 
+export HADOOP_SECURE_DN_USER=
+
 yarn nodemanager
