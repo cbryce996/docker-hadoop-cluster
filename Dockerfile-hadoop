@@ -3,6 +3,8 @@ FROM ubuntu:latest
 ENV HADOOP_VERSION 3.3.1
 ENV KERBEROS_VERSION 1.18.3
 
+RUN echo 'root:password' | chpasswd
+
 RUN apt-get update && \
     apt-get install -y telnet iputils-ping
 

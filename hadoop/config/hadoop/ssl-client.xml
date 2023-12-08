@@ -2,7 +2,12 @@
 
     <property>
         <name>ssl.client.truststore.location</name>
-        <value>/ssl/truststore.jks</value>
+        <value>/ssl/hadoop-truststore.jks</value>
+    </property>
+
+     <property>
+        <name>ssl.client.truststore.type</name>
+        <value>jks</value>
     </property>
 
     <property>
@@ -11,8 +16,18 @@
     </property>
 
     <property>
-        <name>ssl.client.truststore.type</name>
+        <name>ssl.client.keystore.location</name>
+        <value>/ssl/hadoop-keystore.jks</value>
+    </property>
+
+     <property>
+        <name>ssl.client.keystore.type</name>
         <value>jks</value>
+    </property>
+
+    <property>
+        <name>ssl.client.keystore.password</name>
+        <value>host@123</value>
     </property>
 
 </configuration>

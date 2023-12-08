@@ -43,7 +43,7 @@ services:
     volumes:
       - ./data/hadoop/datanode:/data/datanode
     ports:
-      - "9864:9864"
+      - "10025:10025"
     expose:
       - "10024"
     networks:

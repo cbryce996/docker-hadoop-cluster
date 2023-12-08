@@ -1,8 +1,14 @@
 <configuration>
+
+    <!-- YARN specific configurations -->
+
+    <!-- Enable ACLs for YARN -->
     <property>
         <name>yarn.acl.enable</name>
-        <value>0</value>
+        <value>1</value>
     </property>
+
+    <!-- NodeManager settings -->
     <property>
         <name>yarn.nodemanager.hostname</name>
         <value>nodemanager</value>
@@ -11,6 +17,8 @@
         <name>yarn.nodemanager.address</name>
         <value>nodemanager:8045</value>
     </property>
+
+    <!-- ResourceManager settings -->
     <property>
         <name>yarn.resourcemanager.hostname</name>
         <value>resourcemanager</value>
@@ -19,28 +27,49 @@
         <name>yarn.resourcemanager.address</name>
         <value>resourcemanager:8082</value>
     </property>
+
+    <!-- MapReduce shuffle as an auxiliary service -->
     <property>
         <name>yarn.nodemanager.aux-services</name>
         <value>mapreduce_shuffle</value>
     </property>
+
+    <!-- Kerberos authentication settings for NodeManager -->
     <property>
         <name>yarn.nodemanager.keytab</name>
         <value>/keys/yarn-nodemanager.keytab</value>
     </property>
-
     <property>
-        <name>yarn.nodemanager.kerberos.principal</name>
+        <name>yarn.nodemanager.principal</name>
         <value>yarn/nodemanager@CLUSTER</value>
     </property>
 
+    <!-- Kerberos authentication settings for ResourceManager -->
     <property>
         <name>yarn.resourcemanager.keytab</name>
         <value>/keys/yarn-resourcemanager.keytab</value>
     </property>
-
     <property>
-        <name>yarn.resourcemanager.kerberos.principal</name>
+        <name>yarn.resourcemanager.principal</name>
         <value>yarn/resourcemanager@CLUSTER</value>
+    </property>
+
+    <!-- SSL settings -->
+    <property>
+        <name>yarn.http.policy</name>
+        <value>HTTPS_ONLY</value>
+    </property>
+
+    <!-- Specify ResourceManager HTTPS address -->
+    <property>
+        <name>yarn.resourcemanager.webapp.https.address</name>
+        <value>resourcemanager:8090</value>
+    </property>
+
+    <!-- Specify NodeManager HTTPS address -->
+    <property>
+        <name>yarn.nodemanager.webapp.https.address</name>
+        <value>nodemanager:8090</value>
     </property>
 
 </configuration>

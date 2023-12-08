@@ -1,13 +1,14 @@
 <configuration>
 
-    <!-- DataNode specific configurations -->
+    <!-- HDFS specific configurations -->
 
-    <!-- Directory where the DataNode stores its blocks -->
+    <!-- DataNode settings -->
     <property>
-        <name>dfs.data.dir</name>
+        <name>dfs.datanode.data.dir</name>
         <value>/data/datanode</value>
     </property>
 
+    <!-- NameNode settings -->
     <property>
         <name>dfs.name.dir</name>
         <value>/data/namenode</value>
@@ -18,62 +19,83 @@
         <name>dfs.datanode.address</name>
         <value>datanode:10019</value>
     </property>
-        
+
+    <!-- DataNode HTTP address -->
     <property>
         <name>dfs.datanode.http.address</name>
         <value>datanode:10022</value>
     </property>
 
+    <!-- DataNode HTTPS address -->
     <property>
         <name>dfs.datanode.https.address</name>
         <value>datanode:10025</value>
     </property>
 
+    <!-- Data transfer protection setting -->
     <property>
         <name>dfs.data.transfer.protection</name>
         <value>integrity</value>
     </property>
 
+    <!-- Enable block access token -->
     <property>
         <name>dfs.block.access.token.enable</name>
         <value>true</value>
     </property>
 
+    <!-- Enable webhdfs -->
     <property>
         <name>dfs.webhdfs.enabled</name>
         <value>true</value>
     </property>
 
+    <!-- Enable HTTPS for HDFS -->
     <property>
         <name>dfs.https.enable</name>
         <value>true</value>
     </property>
 
+    <!-- HTTP policy for HDFS -->
     <property>
         <name>dfs.http.policy</name>
         <value>HTTPS_ONLY</value>
     </property>
 
-    <!-- Kerberos authentication settings -->
-
+    <!-- Kerberos authentication settings for DataNode -->
     <property>
         <name>dfs.datanode.keytab.file</name>
         <value>/keys/hdfs-datanode.keytab</value>
     </property>
-
     <property>
         <name>dfs.namenode.keytab.file</name>
         <value>/keys/hdfs-namenode.keytab</value>
     </property>
-
     <property>
         <name>dfs.datanode.kerberos.principal</name>
         <value>hdfs/datanode@CLUSTER</value>
     </property>
-
     <property>
         <name>dfs.namenode.kerberos.principal</name>
         <value>hdfs/namenode@CLUSTER</value>
+    </property>
+
+    <!-- SSL settings -->
+    <property>
+        <name>dfs.http.policy</name>
+        <value>HTTPS_ONLY</value>
+    </property>
+
+    <!-- Specify NameNode HTTPS address -->
+    <property>
+        <name>dfs.namenode.https-address</name>
+        <value>namenode:50470</value>
+    </property>
+
+    <!-- Specify Secondary NameNode HTTPS address -->
+    <property>
+        <name>dfs.namenode.secondary.https-address</name>
+        <value>secondarynamenode:50091</value>
     </property>
 
 </configuration>
