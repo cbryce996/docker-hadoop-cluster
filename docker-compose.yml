@@ -5,6 +5,8 @@ networks:
 
 services:
   kerberos:
+    container_name: kdc-kerberos
+    hostname: localhost
     build:
       context: .
       dockerfile: Dockerfile-kerberos
@@ -18,62 +20,71 @@ services:
       - hadoop-net
 
   namenode:
+    container_name: namenode-hdfs
+    hostname: localhost
     build:
       context: .
       dockerfile: Dockerfile-hadoop
     environment:
       - NODE_TYPE=name_node
     volumes:
+      - ./data/ssl:/ssl
       - ./data/hadoop/namenode:/data/namenode
     ports:
-      - "50070:50070"
-    expose:
-      - "8020"
+      - "10202:10202"
     networks:
       - hadoop-net
     depends_on:
       - kerberos
 
   datanode:
+    container_name: datanode-hdfs
+    hostname: localhost
     build:
       context: .
       dockerfile: Dockerfile-hadoop
     environment:
       - NODE_TYPE=data_node
     volumes:
+      - ./data/ssl:/ssl
       - ./data/hadoop/datanode:/data/datanode
     ports:
-      - "10025:10025"
-    expose:
-      - "10024"
+      - "10221:10221"
+      - "10225:10225"
     networks:
       - hadoop-net
     depends_on:
       - namenode
 
   resourcemanager:
+    container_name: resourcemanager-yarn
+    hostname: localhost
     build:
       context: .
       dockerfile: Dockerfile-hadoop
     environment:
       - NODE_TYPE=resource_manager
+    volumes:
+      - ./data/ssl:/ssl
     ports:
-      - "8088:8088"
-    expose:
-      - "8082"
+      - "10201:10201"
     networks:
       - hadoop-net
     depends_on:
       - namenode
 
   nodemanager:
+    container_name: nodemanager-yarn
+    hostname: localhost
     build:
       context: .
       dockerfile: Dockerfile-hadoop
     environment:
       - NODE_TYPE=node_manager
+    volumes:
+      - ./data/ssl:/ssl
     ports:
-      - "8042:8042"
+      - "10200:10200"
     networks:
       - hadoop-net
     depends_on:

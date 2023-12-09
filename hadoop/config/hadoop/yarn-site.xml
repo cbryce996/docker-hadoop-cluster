@@ -1,75 +1,74 @@
 <configuration>
 
-    <!-- YARN specific configurations -->
-
     <!-- Enable ACLs for YARN -->
     <property>
         <name>yarn.acl.enable</name>
         <value>1</value>
     </property>
-
-    <!-- NodeManager settings -->
+    
+    
+    <!-- Host names -->
     <property>
         <name>yarn.nodemanager.hostname</name>
         <value>nodemanager</value>
     </property>
+
+    <property>
+        <name>yarn.resourcemanager.hostname</name>
+        <value>resourcemanager</value>
+    </property>
+
+
+    <!-- RPC addresses -->
     <property>
         <name>yarn.nodemanager.address</name>
         <value>nodemanager:8045</value>
     </property>
 
-    <!-- ResourceManager settings -->
-    <property>
-        <name>yarn.resourcemanager.hostname</name>
-        <value>resourcemanager</value>
-    </property>
     <property>
         <name>yarn.resourcemanager.address</name>
         <value>resourcemanager:8082</value>
     </property>
 
-    <!-- MapReduce shuffle as an auxiliary service -->
+
+    <!-- HTTPS addresses -->
     <property>
-        <name>yarn.nodemanager.aux-services</name>
-        <value>mapreduce_shuffle</value>
+        <name>yarn.resourcemanager.webapp.https.address</name>
+        <value>resourcemanager:10201</value>
     </property>
 
-    <!-- Kerberos authentication settings for NodeManager -->
     <property>
-        <name>yarn.nodemanager.keytab</name>
-        <value>/keys/yarn-nodemanager.keytab</value>
-    </property>
-    <property>
-        <name>yarn.nodemanager.principal</name>
-        <value>yarn/nodemanager@CLUSTER</value>
+        <name>yarn.nodemanager.webapp.https.address</name>
+        <value>nodemanager:10200</value>
     </property>
 
-    <!-- Kerberos authentication settings for ResourceManager -->
-    <property>
-        <name>yarn.resourcemanager.keytab</name>
-        <value>/keys/yarn-resourcemanager.keytab</value>
-    </property>
-    <property>
-        <name>yarn.resourcemanager.principal</name>
-        <value>yarn/resourcemanager@CLUSTER</value>
-    </property>
 
-    <!-- SSL settings -->
+    <!-- HTTP policy -->
     <property>
         <name>yarn.http.policy</name>
         <value>HTTPS_ONLY</value>
     </property>
 
-    <!-- Specify ResourceManager HTTPS address -->
+
+    <!-- Kerberos authentication -->
     <property>
-        <name>yarn.resourcemanager.webapp.https.address</name>
-        <value>resourcemanager:8090</value>
+        <name>yarn.nodemanager.keytab</name>
+        <value>/keys/yarn-nodemanager.keytab</value>
     </property>
 
-    <!-- Specify NodeManager HTTPS address -->
     <property>
-        <name>yarn.nodemanager.webapp.https.address</name>
-        <value>nodemanager:8090</value>
+        <name>yarn.nodemanager.principal</name>
+        <value>yarn/nodemanager@CLUSTER</value>
     </property>
 
+    <property>
+        <name>yarn.resourcemanager.keytab</name>
+        <value>/keys/yarn-resourcemanager.keytab</value>
+    </property>
+    
+    <property>
+        <name>yarn.resourcemanager.principal</name>
+        <value>yarn/resourcemanager@CLUSTER</value>
+    </property>
+    
 </configuration>

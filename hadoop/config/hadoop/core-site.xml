@@ -1,10 +1,13 @@
 <configuration>
-
+    
+    <!-- Filesystem -->
     <property>
         <name>fs.defaultFS</name>
         <value>hdfs://namenode:8020</value>
     </property>
 
+
+    <!-- Security -->
     <property>
         <name>hadoop.security.authentication</name>
         <value>kerberos</value>
@@ -12,7 +15,7 @@
 
     <property>
         <name>hadoop.rpc.protection</name>
-        <value>privacy</value>
+        <value>authentication</value>
     </property>
 
     <property>
@@ -25,6 +28,7 @@
         <value>kerberos:88</value>
     </property>
 
+    <!-- SSL -->
     <property>
         <name>hadoop.ssl.server.conf</name>
         <value>ssl-server.xml</value>
