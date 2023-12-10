@@ -5,8 +5,7 @@ networks:
 
 services:
   kerberos:
-    container_name: kdc-kerberos
-    hostname: localhost
+    #hostname: localhost
     build:
       context: .
       dockerfile: Dockerfile-kerberos
@@ -19,9 +18,15 @@ services:
     networks:
       - hadoop-net
 
+  spark:
+    build:
+      context: .
+      dockerfile: Dockerfile-spark
+    networks:
+      - hadoop-net
+  
   namenode:
-    container_name: namenode-hdfs
-    hostname: localhost
+    #hostname: localhost
     build:
       context: .
       dockerfile: Dockerfile-hadoop
@@ -31,15 +36,16 @@ services:
       - ./data/ssl:/ssl
       - ./data/hadoop/namenode:/data/namenode
     ports:
-      - "10202:10202"
+      - "10252:10252"
+    expose:
+      - "8020"
     networks:
       - hadoop-net
     depends_on:
       - kerberos
 
   datanode:
-    container_name: datanode-hdfs
-    hostname: localhost
+    #hostname: localhost
     build:
       context: .
       dockerfile: Dockerfile-hadoop
@@ -57,8 +63,7 @@ services:
       - namenode
 
   resourcemanager:
-    container_name: resourcemanager-yarn
-    hostname: localhost
+    #hostname: localhost
     build:
       context: .
       dockerfile: Dockerfile-hadoop
@@ -74,8 +79,7 @@ services:
       - namenode
 
   nodemanager:
-    container_name: nodemanager-yarn
-    hostname: localhost
+    #hostname: localhost
     build:
       context: .
       dockerfile: Dockerfile-hadoop

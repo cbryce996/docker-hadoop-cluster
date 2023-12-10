@@ -15,7 +15,7 @@
 
     <property>
         <name>hadoop.rpc.protection</name>
-        <value>authentication</value>
+        <value>privacy</value>
     </property>
 
     <property>

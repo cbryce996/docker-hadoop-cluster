@@ -1,9 +1,6 @@
 FROM ubuntu:latest
 
-ENV HADOOP_VERSION 3.3.1
-ENV KERBEROS_VERSION 1.18.3
-
-RUN echo 'root:password' | chpasswd
+ENV HADOOP_VERSION 3.3.0
 
 RUN apt-get update && \
     apt-get install -y telnet iputils-ping
@@ -27,4 +24,4 @@ ENV HADOOP_HOME /opt/hadoop-${HADOOP_VERSION}
 ENV PATH $PATH:$HADOOP_HOME/bin
 ENV HADOOP_ROOT_LOGGER=DEBUG,console
 
-ENTRYPOINT ["/scripts/start_hadoop.sh"]^]
+ENTRYPOINT ["/scripts/start_hadoop.sh"]

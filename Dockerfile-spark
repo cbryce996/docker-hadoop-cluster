@@ -1,0 +1,31 @@
+FROM ubuntu:latest
+
+ENV HADOOP_VERSION 3.2
+ENV SPARK_VERSION 3.2.0
+
+RUN apt-get update && \
+    apt-get install -y telnet iputils-ping
+
+# Install Java, Hadoop, Spark, and other dependencies
+RUN apt-get update && \
+    apt-get install -y openjdk-8-jdk wget krb5-user && \
+    wget https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz && \
+    tar -xzvf spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz -C /opt/ && \
+    rm spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
+
+COPY ./hadoop/config/kerberos/krb5.conf /etc/krb5.conf
+COPY ./hadoop/config/hadoop/* /config/hadoop/
+COPY ./spark/config/spark-defaults.conf /opt/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}/conf/spark-defaults.conf
+COPY ./spark/scripts/* /scripts/
+COPY ./data/kerberos/keys/* /keys/
+
+RUN chmod +x /scripts/*
+
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+ENV HADOOP_CONF_DIR /config/hadoop
+ENV HADOOP_HOME /opt/hadoop-${HADOOP_VERSION}
+ENV SPARK_HOME /opt/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}
+ENV PATH $PATH:$HADOOP_HOME/bin:$SPARK_HOME/bin
+ENV HADOOP_ROOT_LOGGER=DEBUG,console
+
+ENTRYPOINT ["/scripts/start_spark.sh"]

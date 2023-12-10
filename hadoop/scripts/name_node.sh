@@ -6,7 +6,4 @@ echo "KDC is up and ready to go... starting up"
 
 kdestroy
 
-HADOOP_SECURE_DN_USER=
-JSVC_HOME=
-
 hdfs namenode

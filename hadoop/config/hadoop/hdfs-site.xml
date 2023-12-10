@@ -27,23 +27,18 @@
 
     <property>
         <name>dfs.namenode.https-address</name>
-        <value>namenode:10202</value>
+        <value>namenode:10252</value>
     </property>
 
 
     <!-- Security settings -->
     <property>
         <name>dfs.data.transfer.protection</name>
-        <value>integrity</value>
+        <value>authentication</value>
     </property>
 
     <property>
         <name>dfs.block.access.token.enable</name>
-        <value>true</value>
-    </property>
-
-    <property>
-        <name>dfs.webhdfs.enabled</name>
         <value>true</value>
     </property>
 
@@ -66,11 +61,11 @@
 
     <property>
         <name>dfs.client.https.need-auth</name>
-        <value>false</value>
+        <value>true</value>
     </property>
 
 
-    <!-- Kerberos authentication settings -->
+    <!-- Kerberos authentication -->
     <property>
         <name>dfs.datanode.keytab.file</name>
         <value>/keys/hdfs-datanode.keytab</value>
