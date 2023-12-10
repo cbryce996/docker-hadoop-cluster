@@ -11,7 +11,7 @@ RUN apt-get update && \
     tar -xzvf hadoop-${HADOOP_VERSION}.tar.gz -C /opt/ && \
     rm hadoop-${HADOOP_VERSION}.tar.gz
 
-COPY ./hadoop/config/kerberos/krb5.conf /etc/krb5.conf
+COPY ./kerberos/config/krb5.conf /etc/krb5.conf
 COPY ./hadoop/config/hadoop/* /config/hadoop/
 COPY ./hadoop/scripts/* /scripts/
 COPY ./data/kerberos/keys/* /keys/

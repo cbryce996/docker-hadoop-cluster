@@ -24,6 +24,11 @@
     </property>
 
     <property>
+        <name>hadoop.security.auth_to_local</name>
+        <value>DEFAULT</value>
+    </property>
+
+    <property>
         <name>hadoop.security.kerberos.kdc</name>
         <value>kerberos:88</value>
     </property>

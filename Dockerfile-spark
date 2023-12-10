@@ -13,7 +13,7 @@ RUN apt-get update && \
     tar -xzvf spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz -C /opt/ && \
     rm spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
 
-COPY ./hadoop/config/kerberos/krb5.conf /etc/krb5.conf
+COPY ./kerberos/config/krb5.conf /etc/krb5.conf
 COPY ./hadoop/config/hadoop/* /config/hadoop/
 COPY ./spark/config/spark-defaults.conf /opt/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}/conf/spark-defaults.conf
 COPY ./spark/scripts/* /scripts/
