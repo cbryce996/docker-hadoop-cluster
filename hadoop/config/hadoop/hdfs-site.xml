@@ -12,22 +12,15 @@
     </property>
 
 
-    <!-- RPC addresses -->
-    <property>
-        <name>dfs.datanode.address</name>
-        <value>datanode:10019</value>
-    </property>
-    
-
-    <!-- HTTPS addresses -->
+    <!-- HTTPS addresses >-->
     <property>
         <name>dfs.datanode.https.address</name>
-        <value>datanode:10225</value>
+        <value>datanode:5000</value>
     </property>
 
     <property>
         <name>dfs.namenode.https-address</name>
-        <value>namenode:10252</value>
+        <value>namenode:5001</value>
     </property>
 
 
@@ -55,13 +48,13 @@
     </property>
 
     <property>
-        <name>dfs.https.enable</name>
+        <name>dfs.client.https.need-auth</name>
         <value>true</value>
     </property>
 
     <property>
-        <name>dfs.client.https.need-auth</name>
-        <value>true</value>
+        <name>dfs.webhdfs.enabled</name>
+        <value>false</value>
     </property>
 
 

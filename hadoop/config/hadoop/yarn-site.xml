@@ -34,12 +34,12 @@
     <!-- HTTPS addresses -->
     <property>
         <name>yarn.resourcemanager.webapp.https.address</name>
-        <value>resourcemanager:10201</value>
+        <value>resourcemanager:5002</value>
     </property>
 
     <property>
         <name>yarn.nodemanager.webapp.https.address</name>
-        <value>nodemanager:10200</value>
+        <value>nodemanager:5003</value>
     </property>
 
 
