@@ -8,10 +8,10 @@ object Main {
       .master("yarn")
       .getOrCreate()
 
-    val dataPath = "/user/spark/dataset/data.txt"
-    val englishPath = "/user/spark/dataset/english.txt"
-    val frenchPath = "/user/spark/dataset/french.txt"
-    val germanPath = "/user/spark/dataset/german.txt"
+    val dataPath = "/user/spark/task2/data.txt"
+    val englishPath = "/user/spark/task2/english.txt"
+    val frenchPath = "/user/spark/task2/french.txt"
+    val germanPath = "/user/spark/task2/german.txt"
 
     // Load language RDDs (replace these with your actual RDDs)
     val dataRDD = spark.sparkContext.textFile(dataPath)
@@ -35,7 +35,7 @@ object Main {
     val detectedLanguage = languageScores.maxBy(_._2)._1
 
     val fs = FileSystem.get(spark.sparkContext.hadoopConfiguration)
-    val outputPathForLanguage = new Path("/user/spark/dataset/output")
+    val outputPathForLanguage = new Path("/user/spark/task2/output")
     fs.create(outputPathForLanguage).close()
 
     // Append data to the file
